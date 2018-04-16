@@ -1,0 +1,42 @@
+{
+  "name": "locator",
+  "version": "1.0.0",
+  "description": "test task locator",
+  "main": "server.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha",
+    "start": "./node_modules/.bin/nodemon -w ./ --harmony"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blackkopcap/locator.git"
+  },
+  "keywords": [
+    "soap",
+  ],
+  "author": "Nikita Molchanov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blackkopcap/locator/issues"
+  },
+  "dependencies": {
+    "body-parser": "^1.9.0",
+    "compression": "^1.5.2",
+    "express": "~4.9.0",
+    "express-session": "^1.11.3",
+    "method-override": "^2.3.10",
+    "moment": "^2.22.0",
+    "mysql": "^2.15.0",
+    "pug": "^2.0.3",
+    "pug-bootstrap": "0.0.15",
+    "sequelize": "^3.9.0",
+    "soap": "^0.24.0"
+  },
+  "homepage": "https://github.com/blackkopcap/locator",
+  "devDependencies": {
+    "mocha": "^2.3.3",
+    "node-fetch": "^1.0.6",
+    "nodemon": "^1.7.0",
+    "superagent": "^1.4.0"
+  }
+}

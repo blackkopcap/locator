@@ -1,0 +1,8 @@
+extends ../../../node_modules/pug-bootstrap/_bootstrap
+
+append body
+	.container
+		h1= title
+		+nav("nav-tabs",[{href:"/orders",text:"Вернуться к списку заказов"}], true)
+		+alert-info("Заказ")
+		+table(["Номер заказа ","Локатор","Фамилия","Имя"], order)
