@@ -7,12 +7,17 @@ const url = 'http://www.cbr.ru/DailyInfoWebServ/DailyInfo.asmx?WSDL';
 let makeRequest = (url, args) => {
     return new Promise(function(response, error) {
         soap.createClient(url, function(err, client) {
-            client.GetCursOnDate(args, function(err, result) {
-                if (!err)
-                    response(result);
-                else
-                    error(err);
-            });
+            if(!err)
+            {
+                client.GetCursOnDate(args, function(err, result) {
+                    if (!err)
+                        response(result);
+                    else
+                        error(err);
+                });
+            }else{
+                error(err)
+            }
         });
     });
 }
@@ -25,7 +30,10 @@ module.exports = {
         };
 
         var curr_table = {};
+        try
+        {
         var currencies = await makeRequest(url, args);
+        
 
         currencies.GetCursOnDateResult.diffgram.ValuteData.ValuteCursOnDate.forEach((currency) => {
             curr_table[currency.VchCode] = {
@@ -35,5 +43,11 @@ module.exports = {
         })
 
         return curr_table;
+        }
+        catch(err)
+        {
+            console.warn(err);
+            return {};
+        }
     }
 }
