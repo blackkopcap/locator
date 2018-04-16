@@ -13,20 +13,21 @@ module.exports = {
 
         var orders_list = [];
         for (let id in orders) {
-          let passengers = await Passenger.findAndCountAll({
+          let passengers = await Passenger.count({
             where: {
               order_id: orders[id].id
             }
           });
           
-          let amount_in_rubles = (typeof currencies[orders[id].currency] != "undefined") ? Math.floor(orders[id].price * currencies[orders[id].currency].value / currencies[orders[id].currency].nominal) * passengers.count + " руб." : orders[id].price * passengers.count + " руб.";
+          let amount_in_rubles = (typeof currencies[orders[id].currency] != "undefined") ? Math.floor(orders[id].price * currencies[orders[id].currency].value / currencies[orders[id].currency].nominal) * passengers + " руб." : orders[id].price * passengers + " руб.";
 
           orders_list.push(
             [
               orders[id].id, `<a href="/order/${orders[id].locator}">${orders[id].locator}</a>`, 
               moment().format("YYYY-MM-DD HH:mm:ss"), 
-              amount_in_rubles, `${orders[id].price * passengers.count} ${orders[id].currency}`, 
-              passengers.count
+              amount_in_rubles, 
+              `${orders[id].price * passengers} ${orders[id].currency}`, 
+              passengers
             ])
         }
 
