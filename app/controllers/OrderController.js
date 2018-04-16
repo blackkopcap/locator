@@ -6,7 +6,7 @@ let moment = require("moment");
 
 module.exports = {
   index: {
-    asyncget(req, res) {
+    async get(req, res) {
       try {
         let id = req.params.id;
         if (!id)
